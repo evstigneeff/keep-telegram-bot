@@ -1,4 +1,5 @@
 // require("dotenv").config({ path: "./config/dev.env" })
+const units = require("ethereumjs-units")
 const { getTransactions } = require("./network_info")
 
 const getECDSA = async () => {
@@ -17,4 +18,17 @@ const getYourECDSA = async (address) => {
     return txHashes
 }
 
-module.exports = { getECDSA, getYourECDSA }
+const getYourETH = async (address) => {
+    let sum = 0
+    const data = await getTransactions("txlist", process.env.ETH_BOND_ADDRESS)
+    const successTX = data.filter (el => el.isError=== "0")
+    const yrTransactions = successTX.filter(el => el.from === address)
+    yrTransactions.forEach(el => { 
+        sum += parseFloat(units.convert(el.value,"wei","eth"), 10)
+    })
+    return sum
+
+    
+}
+
+module.exports = { getECDSA, getYourECDSA, getYourETH }

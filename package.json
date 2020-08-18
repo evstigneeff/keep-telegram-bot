@@ -1,10 +1,10 @@
 {
   "name": "keep-telegram-bot",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "",
-  "main": "index.js",
+  "main": "./src/index.js",
   "scripts": {
-    "start": "node ./src/index.js",
+    "start": "micro-bot",
     "startDev": "nodemon -r dotenv/config ./src/index.js dotenv_config_path=./config/dev.env"
   },
   "author": "",
@@ -13,6 +13,7 @@
     "axios": "^0.19.2",
     "dotenv": "^8.2.0",
     "ethereumjs-units": "^0.2.0",
+    "micro-bot": "^2.5.3",
     "telegraf": "^3.38.0"
   },
   "devDependencies": {

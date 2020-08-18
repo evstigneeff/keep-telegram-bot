@@ -19,12 +19,25 @@ const getYourRB = async (address) => {
 }
 
 const getKEEP = async () => {
-    let sum = 0
-    const data = await getTransactions("tokentx", process.env.KEEP_STAKE_ADDRESS)
-    data.forEach(el => { 
-        el.to != process.env.KEEP_STAKE_ADDRESS ? sum -= parseInt(units.convert(el.value,"wei","eth"), 10) : sum += parseInt(units.convert(el.value,"wei","eth"), 10)
-    })
-    return(sum)
+    return await getTransactions("tokentx", process.env.KEEP_STAKE_ADDRESS)
 }
 
-module.exports = { getRB, getYourRB, getKEEP }
+const getStake = async () => {
+    let sum = 0
+    const data = await getKEEP()
+    data.forEach(el => { 
+        el.to != process.env.KEEP_STAKE_ADDRESS ? sum -= parseFloat(units.convert(el.value,"wei","eth"), 10) : sum += parseFloat(units.convert(el.value,"wei","eth"), 10)
+    })
+    return sum
+}
+
+const getSlash = async () => {
+    let sum = 0
+    const data = await getKEEP()
+    data.forEach(el =>{
+        el.to != "0x0000000000000000000000000000000000000000" ? sum = sum : sum += parseFloat(units.convert(el.value,"wei","eth"), 10)
+    })
+    return sum
+}
+
+module.exports = { getRB, getYourRB, getStake, getSlash }
