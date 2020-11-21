@@ -14,9 +14,9 @@ const bot = new Composer
 // const bot = new Telegraf(token)
 
 // Create menu
-bot.start((ctx) => ctx.reply("Welcome to Keep Network Telegram Bot! \n\nYou can select from available options:" +
+bot.start((ctx) => ctx.reply("Welcome to Keep Network (Mainnet) Telegram Bot! \n\nYou can select from available options:" +
     "\n/rb    To get some Random Beacon statistics \n/ecdsa    To get some ECDSA Statistics"))
-bot.command("exit", (ctx) => ctx.reply("Welcome to Keep Network Telegram Bot! \n\nYou can select from available options:" +
+bot.command("exit", (ctx) => ctx.reply("Welcome to Keep Network (Mainnet) Telegram Bot! \n\nYou can select from available options:" +
     "\n/rb    To get some Random Beacon statistics \n/ecdsa    To get some ECDSA Statistics"))
 bot.command("rb", (ctx) => ctx.reply("The options are as follows: \n\nRun rb 'your address' to get your ECDSA Node statistics \n OR" +
     "\n/rb_node_number    Cumulative number of Random Beacon Nodes" +
